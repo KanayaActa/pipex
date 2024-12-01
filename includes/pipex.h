@@ -6,7 +6,7 @@
 /*   By: miwasa <miwasa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/01 12:53:03 by miwasa            #+#    #+#             */
-/*   Updated: 2024/12/01 17:53:10 by miwasa           ###   ########.fr       */
+/*   Updated: 2024/12/01 19:57:44 by miwasa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ typedef struct s_args
 }	t_args;
 
 void	is_valid_args(int argc, char **argv);
-void	option_help(int fd, const char *op);
+void	display_help(int fd, const char *op);
 void	create_pipe(int **pipefd);
 void	proc_cmd(pid_t pid);
 

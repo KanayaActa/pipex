@@ -6,7 +6,7 @@
 #    By: miwasa <miwasa@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/01 12:49:42 by miwasa            #+#    #+#              #
-#    Updated: 2024/12/01 18:02:24 by miwasa           ###   ########.fr        #
+#    Updated: 2024/12/01 19:58:57 by miwasa           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,10 +24,10 @@ CFLAGS		:= -Wall -Wextra -Werror -I$(INCS_DIR) -I$(FT_DIR)
 SRCS		:= \
 	main.c \
 	is_valid_args.c \
-	option_help.c \
+	display_help.c \
+	init_args.c \
 	create_pipe.c \
-	proc_cmd.c \
-	init_args.c
+	proc_cmd.c
 
 OBJS		:= $(addprefix $(OBJS_DIR)/, $(SRCS:.c=.o))
 
