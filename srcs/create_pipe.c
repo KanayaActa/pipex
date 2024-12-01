@@ -1,26 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   is_valid_args.c                                    :+:      :+:    :+:   */
+/*   create_pipe.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: miwasa <miwasa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/01 15:07:55 by miwasa            #+#    #+#             */
-/*   Updated: 2024/12/01 15:36:16 by miwasa           ###   ########.fr       */
+/*   Created: 2024/12/01 15:52:00 by miwasa            #+#    #+#             */
+/*   Updated: 2024/12/01 17:39:56 by miwasa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-void	is_valid_args(int argc, char **argv)
+void	create_pipe(int **pipefd)
 {
-	if (argc == 2)
-		option_help(STDOUT_FILENO, argv[1]);
-	if (argc != 5)
+	if (pipe(*pipefd) == -1)
 	{
-		errno = EINVAL;
 		perror(NULL);
-		option_help(STDERR_FILENO, NULL);
 		exit(EXIT_FAILURE);
 	}
 }

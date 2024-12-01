@@ -1,26 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   is_valid_args.c                                    :+:      :+:    :+:   */
+/*   option_help.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: miwasa <miwasa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/01 15:07:55 by miwasa            #+#    #+#             */
-/*   Updated: 2024/12/01 15:36:16 by miwasa           ###   ########.fr       */
+/*   Created: 2024/12/01 15:25:27 by miwasa            #+#    #+#             */
+/*   Updated: 2024/12/01 15:28:43 by miwasa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-void	is_valid_args(int argc, char **argv)
+void	option_help(int fd, const char *op)
 {
-	if (argc == 2)
-		option_help(STDOUT_FILENO, argv[1]);
-	if (argc != 5)
+	if (fd == STDERR_FILENO || !op)
+		ft_putstr_fd(HELP_MESSAGE, fd);
+	else if (!ft_strcmp(op, "--help") || !ft_strcmp(op, "-h"))
 	{
-		errno = EINVAL;
-		perror(NULL);
-		option_help(STDERR_FILENO, NULL);
-		exit(EXIT_FAILURE);
+		ft_putstr_fd(HELP_MESSAGE, fd);
+		if (fd == STDOUT_FILENO)
+			exit(EXIT_SUCCESS);
 	}
 }
