@@ -1,34 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   init_args.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: miwasa <miwasa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/01 15:10:58 by miwasa            #+#    #+#             */
-/*   Updated: 2024/12/01 18:10:22 by miwasa           ###   ########.fr       */
+/*   Created: 2024/12/01 18:02:37 by miwasa            #+#    #+#             */
+/*   Updated: 2024/12/01 19:53:23 by miwasa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-int	main(int argc, char **argv, char **envp)
+void	init_args(t_args *args, char **argv)
 {
-	int		pipefd[2];
-	pid_t	pid1;
-	pid_t	pid2;
-	t_args	args;
-
-	is_valid_args(argc, argv);
-	init_args(argv);
-	create_pipe(pipefd);
-	proc_cmd(pid1);
-	proc_cmd(pid2);
-	close(pipefd[0]);
-	clode(pipefd[1]);
-	waitpid(pid1, NULL, 0);
-	waitpid(pid2, NULL, 0);
-	(void)envp;
-	(void)argv;
-	return (0);
+	args->infile = argv[1];
+	args->cmd1 = argv[2];
+	args->cmd2 = argv[3];
+	args->outfile = argv[4];
 }

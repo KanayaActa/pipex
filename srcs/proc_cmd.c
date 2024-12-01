@@ -6,13 +6,13 @@
 /*   By: miwasa <miwasa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/01 16:04:47 by miwasa            #+#    #+#             */
-/*   Updated: 2024/12/01 16:14:24 by miwasa           ###   ########.fr       */
+/*   Updated: 2024/12/01 19:48:25 by miwasa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-void	proc_cmd(t_args as, char **envp, int *pipefd, pid_t pid)
+void	proc_cmd(t_args args, char **envp, int *pipefd, pid_t pid)
 {
 	pid = fork();
 	if (pid == -1)
