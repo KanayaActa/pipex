@@ -6,7 +6,7 @@
 #    By: miwasa <miwasa@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/01 12:49:42 by miwasa            #+#    #+#              #
-#    Updated: 2024/12/02 10:43:28 by miwasa           ###   ########.fr        #
+#    Updated: 2024/12/02 11:06:01 by miwasa           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -63,4 +63,5 @@ fclean: clean
 re: fclean all
 
 test: all
-	./_test/test.sh
+	valgrind --leak-check=full --track-fds=yes --trace-children=yes \
+	./pipex files/in "ls -l" "wc -l" files/out

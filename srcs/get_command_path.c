@@ -6,7 +6,7 @@
 /*   By: miwasa <miwasa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 10:42:00 by miwasa            #+#    #+#             */
-/*   Updated: 2024/12/02 10:57:17 by miwasa           ###   ########.fr       */
+/*   Updated: 2024/12/02 11:57:08 by miwasa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,11 @@ char	*get_command_path(const char *cmd, char **envp)
 	{
 		if (access(cmd, X_OK) == 0)
 			return strdup(cmd);
+		if (errno == EACCES)
+		{
+			perror(cmd);
+			exit(errno);
+		}
 		else
 			return NULL;
 	}
@@ -36,7 +41,6 @@ char	*get_command_path(const char *cmd, char **envp)
 			break;
 		}
 	}
-
 	if (!path_env)
 		return NULL;
 
