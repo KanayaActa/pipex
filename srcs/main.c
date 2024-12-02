@@ -6,7 +6,7 @@
 /*   By: miwasa <miwasa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/01 15:10:58 by miwasa            #+#    #+#             */
-/*   Updated: 2024/12/02 10:52:23 by miwasa           ###   ########.fr       */
+/*   Updated: 2024/12/02 13:55:37 by miwasa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 int	main(int argc, char **argv, char **envp)
 {
 	int		pipefd[2];
+	int		status;
 	pid_t	pid1;
 	pid_t	pid2;
 	t_args	args;
@@ -26,10 +27,16 @@ int	main(int argc, char **argv, char **envp)
 	proc_cmd2(&args, envp, pipefd, &pid2);
 	close(pipefd[0]);
 	close(pipefd[1]);
-	waitpid(pid1, NULL, 0);
-	waitpid(pid2, NULL, 0);
+	if (waitpid(pid1, &status, 0) == -1)
+		error_exit("waitpid");
+	if (wifexited(status))
+		status = wexitstatus(status);
+	if (waitpid(pid2, &status, 0) == -1)
+		error_exit("waitpid");
+	if (wifexited(status))
+		status = wexitstatus(status);
 	(void)args;
 	(void)envp;
 	(void)argv;
-	return (0);
+	exit(status);
 }

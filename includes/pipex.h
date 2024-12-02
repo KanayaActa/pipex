@@ -6,7 +6,7 @@
 /*   By: miwasa <miwasa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/01 12:53:03 by miwasa            #+#    #+#             */
-/*   Updated: 2024/12/02 10:57:11 by miwasa           ###   ########.fr       */
+/*   Updated: 2024/12/02 13:55:05 by miwasa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,5 +45,7 @@ void		proc_cmd2(t_args *args, char **envp, int pipefd[2], pid_t *pid2);
 void		error_exit(const char *msg);
 void		execute_command(const char *cmd, char **envp);
 char		*get_command_path(const char *cmd, char **envp);
+int			wifexited(int status);
+int			wexitstatus(int status);
 
 #endif
