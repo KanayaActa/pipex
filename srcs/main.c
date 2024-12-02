@@ -6,7 +6,7 @@
 /*   By: miwasa <miwasa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/01 15:10:58 by miwasa            #+#    #+#             */
-/*   Updated: 2024/12/02 10:08:29 by miwasa           ###   ########.fr       */
+/*   Updated: 2024/12/02 10:52:23 by miwasa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,14 @@ int	main(int argc, char **argv, char **envp)
 
 	is_valid_args(argc, argv);
 	init_args(&args, argv);
-	create_pipe(pipefd);
-	proc_cmd(pid1);
-	proc_cmd(pid2);
+	create_pipe(&pipefd);
+	proc_cmd1(&args, envp, pipefd, &pid1);
+	proc_cmd2(&args, envp, pipefd, &pid2);
 	close(pipefd[0]);
-	clode(pipefd[1]);
+	close(pipefd[1]);
 	waitpid(pid1, NULL, 0);
 	waitpid(pid2, NULL, 0);
+	(void)args;
 	(void)envp;
 	(void)argv;
 	return (0);

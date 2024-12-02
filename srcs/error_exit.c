@@ -1,22 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   create_pipe.c                                      :+:      :+:    :+:   */
+/*   error_exit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: miwasa <miwasa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/01 15:52:00 by miwasa            #+#    #+#             */
-/*   Updated: 2024/12/02 10:56:40 by miwasa           ###   ########.fr       */
+/*   Created: 2024/12/02 10:38:01 by miwasa            #+#    #+#             */
+/*   Updated: 2024/12/02 10:38:17 by miwasa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-void	create_pipe(int (*pipefd)[2])
+void	error_exit(const char *msg)
 {
-	if (pipe(*pipefd) == -1)
-	{
-		perror(NULL);
-		exit(EXIT_FAILURE);
-	}
+	perror(msg);
+	exit(EXIT_FAILURE);
 }

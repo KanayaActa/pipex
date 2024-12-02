@@ -6,13 +6,15 @@
 /*   By: miwasa <miwasa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 10:06:34 by miwasa            #+#    #+#             */
-/*   Updated: 2024/12/02 10:08:22 by miwasa           ###   ########.fr       */
+/*   Updated: 2024/12/02 10:56:14 by miwasa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-void	get_shell_proc()
+char	*get_shell_proc(void)
 {
+	const char	*shellname = "bash";
 
+	return ((char *)shellname);
 }
