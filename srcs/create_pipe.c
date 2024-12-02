@@ -6,15 +6,15 @@
 /*   By: miwasa <miwasa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/01 15:52:00 by miwasa            #+#    #+#             */
-/*   Updated: 2024/12/01 17:39:56 by miwasa           ###   ########.fr       */
+/*   Updated: 2024/12/01 20:04:25 by miwasa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-void	create_pipe(int **pipefd)
+void	create_pipe(int *(pipefd[2]))
 {
-	if (pipe(*pipefd) == -1)
+	if (pipe(pipefd) == -1)
 	{
 		perror(NULL);
 		exit(EXIT_FAILURE);

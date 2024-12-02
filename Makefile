@@ -6,7 +6,7 @@
 #    By: miwasa <miwasa@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/01 12:49:42 by miwasa            #+#    #+#              #
-#    Updated: 2024/12/01 19:58:57 by miwasa           ###   ########.fr        #
+#    Updated: 2024/12/02 10:05:59 by miwasa           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,9 +25,11 @@ SRCS		:= \
 	main.c \
 	is_valid_args.c \
 	display_help.c \
+	get_shell_proc.c \
 	init_args.c \
 	create_pipe.c \
-	proc_cmd.c
+	proc_cmd1.c \
+	proc_cmd2.c
 
 OBJS		:= $(addprefix $(OBJS_DIR)/, $(SRCS:.c=.o))
 
