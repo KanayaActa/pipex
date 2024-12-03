@@ -6,7 +6,7 @@
 /*   By: miwasa <miwasa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 10:42:00 by miwasa            #+#    #+#             */
-/*   Updated: 2024/12/03 11:33:56 by miwasa           ###   ########.fr       */
+/*   Updated: 2024/12/03 18:20:31 by miwasa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 static char	*has_slash(const char *cmd)
 {
-	if (strchr(cmd, '/'))
+	if (ft_strchr(cmd, '/'))
 	{
 		if (access(cmd, X_OK) == 0)
-			return (strdup(cmd));
+			return (ft_strdup(cmd));
 		else
 			return (NULL);
 	}
@@ -31,7 +31,7 @@ static char	*get_path_env(char **envp)
 	i = 0;
 	while (envp[i])
 	{
-		if (strncmp(envp[i], "PATH=", 5) == 0)
+		if (ft_strncmp(envp[i], "PATH=", 5) == 0)
 			return (envp[i] + 5);
 		i++;
 	}

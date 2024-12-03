@@ -6,7 +6,7 @@
 /*   By: miwasa <miwasa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 10:17:45 by miwasa            #+#    #+#             */
-/*   Updated: 2024/12/03 11:34:19 by miwasa           ###   ########.fr       */
+/*   Updated: 2024/12/03 18:20:14 by miwasa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,15 +19,15 @@ static char	*create_full_path(const char *dir, const char *cmd)
 	size_t	cmd_len;
 	size_t	len;
 
-	dir_len = strlen(dir);
-	cmd_len = strlen(cmd);
+	dir_len = ft_strlen(dir);
+	cmd_len = ft_strlen(cmd);
 	len = dir_len + 1 + cmd_len + 1;
 	full_path = malloc(len);
 	if (!full_path)
 		return (NULL);
-	memcpy(full_path, dir, dir_len);
+	ft_memcpy(full_path, dir, dir_len);
 	full_path[dir_len] = '/';
-	strcpy(full_path + dir_len + 1, cmd);
+	ft_strcpy(full_path + dir_len + 1, cmd);
 	return (full_path);
 }
 
@@ -46,10 +46,10 @@ char	*find_full_path(const char *cmd, const char *path_env)
 	char	*full_path;
 	char	*valid_path;
 
-	path_dup = strdup(path_env);
+	path_dup = ft_strdup(path_env);
 	if (!path_dup)
 		return (NULL);
-	token = strtok(path_dup, ":");
+	token = ft_strtok(path_dup, ":");
 	while (token)
 	{
 		full_path = create_full_path(token, cmd);
@@ -58,7 +58,7 @@ char	*find_full_path(const char *cmd, const char *path_env)
 		valid_path = check_access(full_path);
 		if (valid_path)
 			return (free(path_dup), valid_path);
-		token = strtok(NULL, ":");
+		token = ft_strtok(NULL, ":");
 	}
 	return (free(path_dup), NULL);
 }

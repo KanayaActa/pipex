@@ -6,7 +6,7 @@
 /*   By: miwasa <miwasa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 09:52:57 by miwasa            #+#    #+#             */
-/*   Updated: 2024/12/03 12:36:09 by miwasa           ###   ########.fr       */
+/*   Updated: 2024/12/03 18:20:51 by miwasa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ char	**parse_command(const char *shell, const char *cmd)
 	int		token_count;
 	char	**args;
 
-	cmd_dup = strdup(cmd);
+	cmd_dup = ft_strdup(cmd);
 	if (!cmd_dup)
 		print_error_and_exit(shell, "strdup", EXIT_FAILURE);
 	token_count = count_tokens(cmd_dup);

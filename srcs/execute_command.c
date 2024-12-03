@@ -6,7 +6,7 @@
 /*   By: miwasa <miwasa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 10:39:41 by miwasa            #+#    #+#             */
-/*   Updated: 2024/12/03 16:46:56 by miwasa           ###   ########.fr       */
+/*   Updated: 2024/12/03 18:19:43 by miwasa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static void	handle_command_not_found(char **args, const char *cmd)
 	char	*buf;
 	size_t	size;
 
-	size = strlen(cmd) + strlen(": command not found\n") + 1;
+	size = ft_strlen(cmd) + ft_strlen(": command not found\n") + 1;
 	buf = __builtin_alloca(size);
 	ft_strlcpy(buf, cmd, size);
 	ft_strlcat(buf, ": command not found\n", size);
