@@ -6,7 +6,7 @@
 /*   By: miwasa <miwasa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/01 15:10:58 by miwasa            #+#    #+#             */
-/*   Updated: 2024/12/02 13:55:37 by miwasa           ###   ########.fr       */
+/*   Updated: 2024/12/03 09:27:54 by miwasa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,15 +28,12 @@ int	main(int argc, char **argv, char **envp)
 	close(pipefd[0]);
 	close(pipefd[1]);
 	if (waitpid(pid1, &status, 0) == -1)
-		error_exit("waitpid");
+		print_error_and_exit(args.shell, "waitpid", EXIT_FAILURE);
 	if (wifexited(status))
 		status = wexitstatus(status);
 	if (waitpid(pid2, &status, 0) == -1)
-		error_exit("waitpid");
+		print_error_and_exit(args.shell, "waitpid", EXIT_FAILURE);
 	if (wifexited(status))
 		status = wexitstatus(status);
-	(void)args;
-	(void)envp;
-	(void)argv;
 	exit(status);
 }

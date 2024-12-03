@@ -6,68 +6,41 @@
 /*   By: miwasa <miwasa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 10:42:00 by miwasa            #+#    #+#             */
-/*   Updated: 2024/12/02 11:57:08 by miwasa           ###   ########.fr       */
+/*   Updated: 2024/12/03 10:18:03 by miwasa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-char	*get_command_path(const char *cmd, char **envp)
+char *has_slash(const char *cmd)
 {
-	char	*path_env = NULL;
-	char	*path_dup = NULL;
-	char	*token = NULL;
-	char	*full_path = NULL;
-	size_t	len;
-
 	if (strchr(cmd, '/'))
 	{
 		if (access(cmd, X_OK) == 0)
 			return strdup(cmd);
-		if (errno == EACCES)
-		{
-			perror(cmd);
-			exit(errno);
-		}
 		else
 			return NULL;
 	}
+	return NULL;
+}
 
+char *get_path_env(char **envp)
+{
 	for (int i = 0; envp[i]; i++)
 	{
 		if (strncmp(envp[i], "PATH=", 5) == 0)
-		{
-			path_env = envp[i] + 5;
-			break;
-		}
+			return envp[i] + 5;
 	}
+	return NULL;
+}
+
+char *get_command_path(const char *cmd, char **envp)
+{
+	char *cmd_path = has_slash(cmd);
+	if (cmd_path)
+		return cmd_path;
+	char *path_env = get_path_env(envp);
 	if (!path_env)
 		return NULL;
-
-	path_dup = strdup(path_env);
-	if (!path_dup)
-		return NULL;
-
-	token = strtok(path_dup, ":");
-	while (token)
-	{
-		len = strlen(token) + 1 + strlen(cmd) + 1;
-		full_path = malloc(len);
-		if (!full_path)
-		{
-			free(path_dup);
-			return NULL;
-		}
-		snprintf(full_path, len, "%s/%s", token, cmd);
-		if (access(full_path, X_OK) == 0)
-		{
-			free(path_dup);
-			return full_path;
-		}
-		free(full_path);
-		token = strtok(NULL, ":");
-	}
-
-	free(path_dup);
-	return NULL;
+	return find_full_path(cmd, path_env);
 }
