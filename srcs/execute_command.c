@@ -6,7 +6,7 @@
 /*   By: miwasa <miwasa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 10:39:41 by miwasa            #+#    #+#             */
-/*   Updated: 2024/12/03 12:33:17 by miwasa           ###   ########.fr       */
+/*   Updated: 2024/12/03 16:46:56 by miwasa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ static void	handle_command_not_found(char **args, const char *cmd)
 
 	size = strlen(cmd) + strlen(": command not found\n") + 1;
 	buf = __builtin_alloca(size);
-	strlcpy(buf, cmd, size);
-	strlcat(buf, ": command not found\n", size);
+	ft_strlcpy(buf, cmd, size);
+	ft_strlcat(buf, ": command not found\n", size);
 	perror(buf);
 	free(args);
 	exit(127);
@@ -39,6 +39,8 @@ static void	open_command_path(const char *shell, const char *cmd_path)
 	fd = open(cmd_path, O_WRONLY);
 	if (fd == -1 && errno == EISDIR)
 		print_error_and_exit(shell, cmd_path, 126);
+	if (fd < 0)
+		return ;
 	close(fd);
 }
 
