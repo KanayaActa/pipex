@@ -6,7 +6,7 @@
 /*   By: miwasa <miwasa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/01 15:10:58 by miwasa            #+#    #+#             */
-/*   Updated: 2024/12/03 09:27:54 by miwasa           ###   ########.fr       */
+/*   Updated: 2024/12/03 12:37:46 by miwasa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	main(int argc, char **argv, char **envp)
 
 	is_valid_args(argc, argv);
 	init_args(&args, argv);
-	create_pipe(&pipefd);
+	create_pipe(args.shell, &pipefd);
 	proc_cmd1(&args, envp, pipefd, &pid1);
 	proc_cmd2(&args, envp, pipefd, &pid2);
 	close(pipefd[0]);
